@@ -1,4 +1,5 @@
 require("./settings");
+
 const {
   default: WADefault,
   useMultiFileAuthState,
@@ -9,16 +10,19 @@ const {
   makeCacheableSignalKeyStore,
   PHONENUMBER_MCC,
 } = require("@adiwajshing/baileys");
+
 const moment = require("moment-timezone");
 const NodeCache = require("node-cache");
 const readline = require("readline");
 const pino = require("pino");
 const pairingCode = global.usePairingNumber;
 const useMobile = false;
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
+
 const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 const { Boom } = require("@hapi/boom");
 const fs = require("fs");
@@ -48,6 +52,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set("view engine", "ejs");
+
 // Public Path
 app.use("/p", express.static(path.resolve("public")));
 app.use("/p/*", (req, res) => res.status(404).send("Media Not Found"));
@@ -76,6 +81,7 @@ app.get("/", (req, res) => {
     root: __dirname,
   });
 });
+
 //fungsi suara capital
 function capital(textSound) {
   const arr = textSound.split(" ");
